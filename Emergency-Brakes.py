@@ -1,12 +1,12 @@
 import threading
 import win32serviceutil
+import tkinter as tk
 from win10toast_click import ToastNotifier
 import datetime
 toaster = ToastNotifier()
 
-
 def main():
-    '''Define detection module'''
+    '''Define module'''
     #  0: "UNKNOWN"
     #  1: "STOPPED"
     #  2: "START_PENDING"
@@ -51,7 +51,6 @@ def main():
                 win32serviceutil.StopService(service_name)
             except Exception as e:
                 if e.args:
-                    # print e.args
                     args = list()
                     for arg in e.args:
                         if is_iterable(arg):
@@ -65,28 +64,47 @@ def main():
                         "Uncaught exception, maybe it is a 'Access Denied'")
 
     '''write log'''
-    def writelog():
+    def writelog(device):
         log = open('log.txt', 'a')
         time = datetime.datetime.now()
-        log.writelines("[" + str(time) + "] " +
-                       "Camera detected being used." + "\n")
+        log.writelines("[" + str(time) + "] " + str(device) +
+                       " detected being used." + "\n")
         log.close()
 
-    while True:
-        '''read log'''
-        log = open("log.txt", "r+")
-        line = log.read().splitlines()
-        list1 = line[1:2]
-        logger = ''.join(list1)
-        log.close()
-        if status_service("FrameServer") == True:
-            toaster.show_toast("E-B:Camera detected being used!",
-                               "If you aren't using it, open Emergency-Brakes and click 'Brake'.",
-                               icon_path="image/warning.ico",
-                               threaded=False)
-            if logger == "True":
-                writelog()
+    def window_thread():
+        window = tk.Tk()
+        window.title("Emergency-Brakes")
+        window.geometry('300x100')
+        window.resizable(False, False)
+        # Todo: finish the window, minimize to tray
+        window.mainloop()
 
+    def detect_thread():
+        while True:
+            '''read log'''
+            log = open("log.txt", "r+")
+            line = log.read().splitlines()
+            list1 = line[1:2]
+            logger = ''.join(list1)
+            log.close()
+            '''FrameServer => Camera'''
+            # Todo: Modification notification mechanism
+            if status_service("FrameServer") == True:
+                toaster.show_toast("E-B:Camera detected being used!",
+                                   "If you aren't using it, open Emergency-Brakes and click 'Brake'.",
+                                   icon_path="image/warning.ico",
+                                   threaded=False)
+                if logger == "True":
+                    writelog("Camera")
+
+    '''thread'''
+    thread1 = threading.Thread(target=window_thread)
+    thread2 = threading.Thread(target=detect_thread)
+    try:
+        thread1.start()
+        thread2.start()
+    except:
+        print("Error: unable to start thread")
 
 if __name__ == "__main__":
     main()
