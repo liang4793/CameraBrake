@@ -74,7 +74,7 @@ def main():
     def window_thread():
         window = tk.Tk()
         window.title("Emergency-Brakes")
-        window.geometry('300x100')
+        window.geometry('300x200')
         window.resizable(False, False)
         # Todo: finish the window, minimize to tray
         window.mainloop()
@@ -87,8 +87,8 @@ def main():
             list1 = line[1:2]
             logger = ''.join(list1)
             log.close()
-            '''FrameServer => Camera'''
             # Todo: Modification notification mechanism
+            '''FrameServer => Camera'''
             if status_service("FrameServer") == True:
                 toaster.show_toast("E-B:Camera detected being used!",
                                    "If you aren't using it, open Emergency-Brakes and click 'Brake'.",
