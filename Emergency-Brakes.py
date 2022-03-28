@@ -76,8 +76,9 @@ def main():
         window.title("Emergency-Brakes")
         window.geometry('300x200')
         window.resizable(False, False)
-        # Todo: finish the window, minimize to tray
-        window.mainloop()
+        while True:
+            # Todo: finish the window, minimize to tray
+            window.update()
 
     def detect_thread():
         while True:
