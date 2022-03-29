@@ -1,6 +1,7 @@
 import threading
 import win32serviceutil
 import tkinter as tk
+import tkinter.ttk
 from win10toast_click import ToastNotifier
 import datetime
 toaster = ToastNotifier()
@@ -73,12 +74,17 @@ def main():
 
     def window_thread():
         window = tk.Tk()
+        notebook = tk.ttk.Notebook(window)
         window.title("Emergency-Brakes")
         window.geometry('300x200')
         window.resizable(False, False)
-        while True:
-            # Todo: finish the window, minimize to tray
-            window.update()
+        main_frame = tk.Frame()
+        setting_frame = tk.Frame()
+        notebook.add(main_frame, text='main')
+        notebook.add(setting_frame, text='setting')
+        notebook.pack(padx=0, pady=0, fill=tkinter.BOTH, expand=True)
+        # Todo: finish the window, minimize to tray
+        window.mainloop()
 
     def detect_thread():
         while True:
