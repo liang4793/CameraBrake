@@ -6,6 +6,7 @@ from win10toast_click import ToastNotifier
 import datetime
 toaster = ToastNotifier()
 
+
 def main():
     '''Define module'''
     #  0: "UNKNOWN"
@@ -72,7 +73,22 @@ def main():
                        " detected being used." + "\n")
         log.close()
 
+    '''tk window'''
     def window_thread():
+        def rewrite_log(value):
+            def changeline(line,content):
+                log = open('log.txt','r+')
+                flist = log.readlines()
+                flist[int(line)] = str(content) + "\n"
+                log = open('log.txt','w+')
+                log.writelines(flist)
+                log.close()
+            if value == "1":
+                changeline(1, "True")
+                #print("Logwriter:True")
+            else:
+                changeline(1, "False")
+                #print("Logwriter:False")
         window = tk.Tk()
         notebook = tk.ttk.Notebook(window)
         window.title("Emergency-Brakes")
@@ -83,9 +99,18 @@ def main():
         notebook.add(main_frame, text='main')
         notebook.add(setting_frame, text='setting')
         notebook.pack(padx=0, pady=0, fill=tkinter.BOTH, expand=True)
+        log_switch_label = tk.Label(setting_frame, text="Logger (left:Off; Right:On)")
+        log_switch_label.pack(anchor='nw')
+        log_switch = tk.Scale(setting_frame, from_=0, to=1,
+                               orient='horizontal', length=50, width=20,
+                               showvalue=0,
+                               command=rewrite_log)
+        log_switch.pack(anchor='nw')
+        
         # Todo: finish the window, minimize to tray
         window.mainloop()
 
+    '''detect'''
     def detect_thread():
         while True:
             '''read log'''
@@ -112,6 +137,7 @@ def main():
         thread2.start()
     except:
         print("Error: unable to start thread")
+
 
 if __name__ == "__main__":
     main()
