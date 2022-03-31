@@ -1,8 +1,10 @@
 # Emergency-Brakes
+Report and block ``camera service/microphone service/location service`` quickly.  
+If you like it, please give me a star --->  
 
-Report and block ``camera service/microphone service/location service`` quickly.
+## Background
 
-**Emergency-Brakes** can detect whether the ``camera service / microphone service / location service`` is occupied and report.</br>
-If you are monitored by malicious programs, you can use **Emergency-Brakes** to understand the occupation of the device and quickly prevent the outflow of private information.
-
+## Introduction
+**Emergency-Brakes** can detect whether the ``camera service / microphone service / location service`` is occupied and report.  
+What's more, **Emergency-Brakes** can quickly stop these services in order to prevent the outflow of private information.
 
