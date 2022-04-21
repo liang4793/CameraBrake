@@ -137,7 +137,7 @@ def main():
                 cam_state_show.set("Camera: On")
             else:
                 cam_state_show.set("Camera: Off")
-            #tk.Label(main_frame, textvariable=cam_state_show).pack(anchor='nw')
+            tk.Label(main_frame, textvariable=cam_state_show).place(anchor='nw')
             window.update()    
         # Todo: finish the window, minimize to tray
 
