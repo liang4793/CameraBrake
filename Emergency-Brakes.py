@@ -65,44 +65,58 @@ def main():
                     raise RuntimeError(
                         "Uncaught exception, maybe it is a 'Access Denied'")
 
-    '''write log'''
-    def writelog(device):
+    '''about log'''
+    def write_log(device):
         log = open('log.txt', 'a')
         time = datetime.datetime.now()
         log.writelines("[" + str(time) + "] " + str(device) +
                        " detected being used." + "\n")
         log.close()
 
+    def read_log(l):
+        log = open("log.txt", "r+")
+        line = log.read().splitlines()
+        list1 = line[int(l)-1:int(l)]
+        result = ''.join(list1)
+        log.close()
+        return(result)
+
     '''tk window'''
     def window_thread():
+        '''read log'''
+        logger_is_on = read_log(2)
+        toaster_is_on = read_log(3)
+        '''rewrite log'''
         def rewrite_log_loger(value):
-            def changeline(line,content):
-                log = open('log.txt','r+')
+            def changeline(line, content):
+                log = open('log.txt', 'r+')
                 flist = log.readlines()
                 flist[int(line)] = str(content) + "\n"
-                log = open('log.txt','w+')
+                log = open('log.txt', 'w+')
                 log.writelines(flist)
                 log.close()
             if value == "1":
                 changeline(1, "True")
-                #print("Logwriter:True")
+                # print("Logwriter:True")
             else:
                 changeline(1, "False")
-                #print("Logwriter:False")
+                # print("Logwriter:False")
+
         def rewrite_log_toaster(value):
-            def changeline(line,content):
-                log = open('log.txt','r+')
+            def changeline(line, content):
+                log = open('log.txt', 'r+')
                 flist = log.readlines()
                 flist[int(line)] = str(content) + "\n"
-                log = open('log.txt','w+')
+                log = open('log.txt', 'w+')
                 log.writelines(flist)
                 log.close()
             if value == "1":
                 changeline(2, "True")
-                #print("Toaster:True")
+                # print("Toaster:True")
             else:
                 changeline(2, "False")
-                #print("Toaster:False")
+                # print("Toaster:False")
+        '''window'''
         window = tk.Tk()
         notebook = tk.ttk.Notebook(window)
         window.title("Emergency-Brakes")
@@ -113,23 +127,25 @@ def main():
         notebook.add(main_frame, text='main')
         notebook.add(setting_frame, text='setting')
         notebook.pack(padx=0, pady=0, fill=tkinter.BOTH, expand=True)
-        #setting_page
-        loger_switch_label = tk.Label(setting_frame, text="Logger (left:Off; Right:On)")
+        # setting_page
+        loger_switch_label = tk.Label(
+            setting_frame, text="Logger (left:Off; Right:On)")
         loger_switch_label.pack(anchor='nw')
         loger_switch = tk.Scale(setting_frame, from_=0, to=1,
-                               orient='horizontal', length=50, width=20,
-                               showvalue=0,
-                               command=rewrite_log_loger)
+                                orient='horizontal', length=50, width=20,
+                                showvalue=0,
+                                command=rewrite_log_loger)
         loger_switch.pack(anchor='nw')
 
-        toaster_switch_label = tk.Label(setting_frame, text="Toaster (left:Off; Right:On)")
+        toaster_switch_label = tk.Label(
+            setting_frame, text="Toaster (left:Off; Right:On)")
         toaster_switch_label.pack(anchor='nw')
         toaster_switch = tk.Scale(setting_frame, from_=0, to=1,
-                               orient='horizontal', length=50, width=20,
-                               showvalue=0,
-                               command=rewrite_log_toaster)
+                                  orient='horizontal', length=50, width=20,
+                                  showvalue=0,
+                                  command=rewrite_log_toaster)
         toaster_switch.pack(anchor='nw')
-        #main_page
+        # main_page
         cam_state_show = tk.StringVar()
         cam_state_show.set("Camera: Off")
         while True:
@@ -138,20 +154,15 @@ def main():
             else:
                 cam_state_show.set("Camera: Off")
             tk.Label(main_frame, textvariable=cam_state_show).place(anchor='nw')
-            window.update()    
+            window.update()
         # Todo: finish the window, minimize to tray
 
     '''detect'''
     def detect_thread():
         while True:
             '''read log'''
-            log = open("log.txt", "r+")
-            line = log.read().splitlines()
-            list1 = line[1:2]
-            list2 = line[2:3]
-            logger_is_on = ''.join(list1)
-            toaster_is_on = ''.join(list2)
-            log.close()
+            logger_is_on = read_log(2)
+            toaster_is_on = read_log(3)
             # Todo: Modification notification mechanism
             '''FrameServer => Camera'''
             if status_service("FrameServer") == True:
@@ -161,7 +172,7 @@ def main():
                                        icon_path="image/warning.ico",
                                        threaded=False)
                 if logger_is_on == "True":
-                    writelog("Camera")
+                    write_log("Camera")
 
     '''thread'''
     thread1 = threading.Thread(target=window_thread)
