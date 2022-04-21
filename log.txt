@@ -1,5 +1,5 @@
-#This log is automatically filled in by the program. 
+#This log is automatically filled in by the program. #Line2:logger Line3:win_toaster
 False
-
+False
 --------------------------------------log--------------------------------------
 #logs:
