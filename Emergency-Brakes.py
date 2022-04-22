@@ -145,10 +145,21 @@ def main():
                                   showvalue=0,
                                   command=rewrite_log_toaster)
         toaster_switch.pack(anchor='nw')
+        # initial switch status
+        if logger_is_on == "True":
+            loger_switch.set(1)
+        else:
+            loger_switch.set(0)
+        if toaster_is_on == "True":
+            toaster_switch.set(1)
+        else:
+            toaster_switch.set(0)
         # main_page
         cam_state_show = tk.StringVar()
         cam_state_show.set("Camera: Off")
+
         while True:
+            # main_page
             if status_service("FrameServer") == True:
                 cam_state_show.set("Camera: On")
             else:
