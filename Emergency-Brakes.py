@@ -1,7 +1,9 @@
+import os
 import threading
 import win32serviceutil
 import tkinter as tk
 import tkinter.ttk
+from tkinter import messagebox
 from win10toast_click import ToastNotifier
 import datetime
 toaster = ToastNotifier()
@@ -46,7 +48,7 @@ def main():
                 raise RuntimeError(
                     "Uncaught exception, maybe it is a 'Access Denied'")
 
-    def stop_service(service_name):
+    def brake_service(service_name):
         status = status_service(service_name)
         if status == True:
             try:
@@ -122,6 +124,12 @@ def main():
         window.title("Emergency-Brakes")
         window.geometry('300x200')
         window.resizable(False, False)
+
+        def close():
+            if messagebox.askokcancel("Quit", "Quit Emergency-Brakes?"):
+                window.destroy()
+                os._exit(0)
+        window.protocol('WM_DELETE_WINDOW', close)
         main_frame = tk.Frame()
         setting_frame = tk.Frame()
         notebook.add(main_frame, text='main')
@@ -155,9 +163,14 @@ def main():
         else:
             toaster_switch.set(0)
         # main_page
+
+        def brake_camera():
+            brake_service("FrameServer")
         cam_state_show = tk.StringVar()
         cam_state_show.set("Camera: Off")
-
+        cam_brake_button = tk.Button(
+            main_frame, text=" brake camera! ", command=brake_camera)
+        cam_brake_button.pack(anchor='se')
         while True:
             # main_page
             if status_service("FrameServer") == True:
