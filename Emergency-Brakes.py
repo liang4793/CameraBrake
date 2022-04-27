@@ -122,6 +122,7 @@ def main():
         window = tk.Tk()
         notebook = tk.ttk.Notebook(window)
         window.title("Emergency-Brakes")
+        window.iconbitmap('image/brake.ico')
         window.geometry('300x200')
         window.resizable(False, False)
 
