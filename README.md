@@ -1,7 +1,7 @@
 # Emergency-Brakes
 <p>
     <img src="https://img.shields.io/badge/Author-Liang4793-blue" alt="Author" />
-    <img src="https://img.shields.io/badge/License-BSD 2 Clause License-green" alt="License" />
+    <img src="https://img.shields.io/github/license/liang4793/Emergency-Brakes" alt="license" />
     <img src="https://img.shields.io/badge/Language-Python-yellow" alt="Language" />
     <img src="https://img.shields.io/badge/Platform-windows-lightgrey" alt="Platform" />
 </p>
