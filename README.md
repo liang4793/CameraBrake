@@ -6,6 +6,8 @@
     <img src="https://img.shields.io/badge/Platform-windows-lightgrey" alt="Platform" />
 </p>
 
+### English | [简体中文](/README(CH).md)
+
 Report and block ``camera service/microphone service/location service`` quickly.  
 If you like it, please give me a star --->  
 
