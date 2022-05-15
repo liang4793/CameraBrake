@@ -198,6 +198,11 @@ def main():
                                        threaded=False)
                 if logger_is_on == "True":
                     write_log("Camera")
+                print("!!!cam on!!!")
+                while True:
+                    if status_service("FrameServer") == False:
+                        print("...cam off...")
+                        break
 
     '''thread'''
     thread1 = threading.Thread(target=window_thread)
