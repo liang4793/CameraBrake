@@ -125,7 +125,6 @@ def main():
         window.iconbitmap('image/brake.ico')
         window.geometry('300x200')
         window.resizable(False, False)
-
         def close():
             if messagebox.askokcancel("Quit", "Quit Emergency-Brakes?"):
                 window.destroy()
@@ -164,7 +163,6 @@ def main():
         else:
             toaster_switch.set(0)
         # main_page
-
         def brake_camera():
             brake_service("FrameServer")
         cam_state_show = tk.StringVar()
@@ -172,6 +170,7 @@ def main():
         cam_brake_button = tk.Button(
             main_frame, text=" brake camera! ", command=brake_camera)
         cam_brake_button.pack(anchor='se')
+
         while True:
             # main_page
             if status_service("FrameServer") == True:
