@@ -129,6 +129,7 @@ def main():
                 log.writelines(flist)
                 log.close()
             if value == "1":
+                brake_service("FrameServer")
                 changeline(3, "True")
                 # print("Always_brake_cam:True")
             else:
