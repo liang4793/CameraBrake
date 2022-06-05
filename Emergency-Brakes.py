@@ -88,6 +88,7 @@ def main():
         '''read log'''
         logger_is_on = read_log(2)
         toaster_is_on = read_log(3)
+        always_brake = read_log(4)
         '''rewrite log'''
         def rewrite_log_loger(value):
             def changeline(line, content):
@@ -118,13 +119,29 @@ def main():
             else:
                 changeline(2, "False")
                 # print("Toaster:False")
+
+        def rewrite_log_brake(value):
+            def changeline(line, content):
+                log = open('log.txt', 'r+')
+                flist = log.readlines()
+                flist[int(line)] = str(content) + "\n"
+                log = open('log.txt', 'w+')
+                log.writelines(flist)
+                log.close()
+            if value == "1":
+                changeline(3, "True")
+                # print("Always_brake_cam:True")
+            else:
+                changeline(3, "False")
+                # print("Always_brake_cam:False")
         '''window'''
         window = tk.Tk()
         notebook = tk.ttk.Notebook(window)
         window.title("Emergency-Brakes")
         window.iconbitmap('image/brake.ico')
-        window.geometry('300x200')
+        window.geometry('300x160')
         window.resizable(False, False)
+
         def close():
             if messagebox.askokcancel("Quit", "Quit Emergency-Brakes?"):
                 window.destroy()
@@ -135,6 +152,7 @@ def main():
         notebook.add(main_frame, text='main')
         notebook.add(setting_frame, text='setting')
         notebook.pack(padx=0, pady=0, fill=tkinter.BOTH, expand=True)
+
         # setting_page
         loger_switch_label = tk.Label(
             setting_frame, text="Logger (left:Off; Right:On)")
@@ -162,6 +180,7 @@ def main():
             toaster_switch.set(1)
         else:
             toaster_switch.set(0)
+        
         # main_page
         def brake_camera():
             brake_service("FrameServer")
@@ -170,6 +189,19 @@ def main():
         cam_brake_button = tk.Button(
             main_frame, text=" brake camera! ", command=brake_camera)
         cam_brake_button.pack(anchor='se')
+        cam_brake_switch_lable = tk.Label(
+            main_frame, text="Always brake camera (left:Off; Right:On)")
+        cam_brake_switch_lable.pack(anchor='nw')
+        cam_brake_switch = tk.Scale(main_frame, from_=0, to=1, 
+                                    orient='horizontal', length=50, width=20,   
+                                    showvalue=0, 
+                                    command=rewrite_log_brake)
+        cam_brake_switch.pack(anchor='nw')
+        # initial switch status
+        if always_brake == "True":
+            cam_brake_switch.set(1)
+        else:
+            cam_brake_switch.set(0)
 
         while True:
             # main_page
@@ -179,7 +211,7 @@ def main():
                 cam_state_show.set("Camera: Off")
             tk.Label(main_frame, textvariable=cam_state_show).place(anchor='nw')
             window.update()
-        # Todo: finish the window, minimize to tray
+        # Todo: minimize to tray
 
     '''detect'''
     def detect_thread():
@@ -187,21 +219,26 @@ def main():
             '''read log'''
             logger_is_on = read_log(2)
             toaster_is_on = read_log(3)
-            # Todo: Modification notification mechanism
+            always_brake = read_log(4)
             '''FrameServer => Camera'''
-            if status_service("FrameServer") == True:
-                if toaster_is_on == "True":
-                    toaster.show_toast("E-B:Camera detected being used!",
-                                       "If you aren't using it, open Emergency-Brakes and click 'Brake'.",
-                                       icon_path="image/warning.ico",
-                                       threaded=False)
-                if logger_is_on == "True":
-                    write_log("Camera")
-                #print("!!!cam on!!!")
-                while True:
-                    if status_service("FrameServer") == False:
-                        #print("...cam off...")
-                        break
+            if always_brake != "True":
+                if status_service("FrameServer") == True:
+                    if toaster_is_on == "True":
+                        toaster.show_toast("E-B:Camera detected being used!",
+                                           "If you aren't using it, open    Emergency-Brakes and click 'Brake'.",
+                                           icon_path="image/warning.ico",
+                                           threaded=False)
+                    if logger_is_on == "True":
+                        write_log("Camera")
+                    #print("!!!cam on!!!")
+                    while True:
+                        if status_service("FrameServer") == False:
+                            #print("...cam off...")
+                            break
+            elif always_brake == "True":
+                if status_service("FrameServer") == True:
+                    brake_service("FrameServer")
+
 
     '''thread'''
     thread1 = threading.Thread(target=window_thread)

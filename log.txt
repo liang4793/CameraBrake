@@ -1,4 +1,5 @@
-#This log is automatically filled in by the program. #Line2:logger Line3:win_toaster
+#This log is automatically filled in by the program. #Line2:logger Line3:win_toaster Line4:always_brake_cam
+False
 False
 False
 --------------------------------------log--------------------------------------
