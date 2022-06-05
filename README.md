@@ -8,17 +8,14 @@
 
 ### English | [简体中文](/README(CH).md)
 
-Report and block ``camera service`` quickly.  
+Quickly report and block ``camera service`` from opening.  
 If you like it, please give me a star --->  
 If there are any questions, please leave issue or contact me.
 
-## Background
-Nowadays, privacy disclosure occurs frequently, and many unprotected input devices have a great risk of privacy disclosure.  
-**Emergency-Brakes** is a lightweight application for software privacy protection.
-
 ## Introduction
-**Emergency-Brakes** can detect whether the ``camera service`` is occupied and report.  
-What's more, **Emergency-Brakes** can quickly turn off the camera and prevent it from turning on again in order to prevent the outflow of private information.
+1. **Emergency-Brakes** can detect whether the ``camera service`` is occupied and report.  
+2. **Emergency-Brakes** can quickly turn off the camera.
+3. **Emergency-Brakes** can prevent the camera from turning on in order to protect privacy and security.
 
 ## How to use
 Under construction
