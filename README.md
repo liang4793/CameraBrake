@@ -19,7 +19,21 @@ If there are any questions, please leave issue or contact me.
 3. **Emergency-Brakes** can prevent the camera from turning on in order to protect privacy and security.
 
 ## How to use
-Under construction
+
+<figure class="half">
+    <img src="https://s2.loli.net/2022/06/13/GHqgpKXF6lVUQT3.jpg" style="width: 260px; height: auto"/>
+    <img src="https://s2.loli.net/2022/06/13/NKHTy4Ql7xjcviG.jpg" style="width: 260px; height: auto"/>
+</figure>
+
+**main:**  
+`Camera: On/Off` Show current status of camera.  
+`brake camera! (Button)` Click to turn off the camera once. (Some programs can turn on the camera again)  
+`always brake camera (Switch)` Switch on to 
+turn off the camera. (Doesn't allow the camera to be turned on again)
+
+**setting:**  
+`Logger (Switch)` Switch on to log.  
+`Toaster (Switch)` Switch on to notify when camera is on.
 
 ## Realization
 Under construction

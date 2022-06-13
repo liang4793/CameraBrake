@@ -19,7 +19,20 @@
 3. **Emergency-Brakes** 可以防止摄像头打开，以保护隐私和安全。
 
 ## 如何使用
-建造中
+
+<figure class="half">
+    <img src="https://s2.loli.net/2022/06/13/GHqgpKXF6lVUQT3.jpg" style="width: 260px; height: auto"/>
+    <img src="https://s2.loli.net/2022/06/13/NKHTy4Ql7xjcviG.jpg" style="width: 260px; height: auto"/>
+</figure>
+
+**main:**  
+`Camera: On/Off` 显示摄像头当前状态  
+`brake camera! (Button)` 单击以关闭摄像头一次 (部分程序会再次开启摄像头)  
+`always brake camera (Switch)` 打开以关闭摄像头 (阻止摄像头被再次开启)
+
+**setting:**  
+`Logger (Switch)` 打开以记录日志  
+`Toaster (Switch)` 打开以开启摄像头通知
 
 ## 实现方式
 建造中
