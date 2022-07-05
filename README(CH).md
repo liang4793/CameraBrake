@@ -11,7 +11,10 @@
 **摄像头隐私保护！**  
 快速地检测、报告并阻止摄像头服务的开启   
 如果你喜欢的话，给我一个star吧 --->  
-遇到任何问题请留下issue或与我联系
+
+## 笔记
+遇到任何问题请留下issue或与我联系  
+🔗在 [Liang4793's Repository](https://liang4793.github.io/docs/project_docs/E-B_doc.html) 浏览该文章
 
 ## 介绍
 1. **Emergency-Brakes** 可以检测摄像头服务是否被占用并报告  
@@ -35,4 +38,5 @@
 `Toaster (Switch)` 打开以开启摄像头通知
 
 ## 实现方式
-建造中
+一个叫做 `FrameServer`(Windows) 的服务控制摄像头的开启或关闭  
+**Emergency-Brakes** 使用 `win32serviceutil` 来检查摄像头是否被开启并通过停止 `FrameServer` 服务来关闭摄像头

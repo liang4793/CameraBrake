@@ -11,7 +11,10 @@
 **Camera privacy protection!**  
 Quickly report and block camera service from opening.  
 If you like it, please give me a star --->  
-If there are any questions, please leave issue or contact me.
+
+## Notes
+If there are any questions, please leave issue or contact me.  
+🔗Browse articles on: [Liang4793's Repository](https://liang4793.github.io/docs/project_docs/E-B_doc.html)
 
 ## Introduction
 1. **Emergency-Brakes** can detect whether the camera service is occupied and report.  
@@ -36,4 +39,5 @@ turn off the camera. (Doesn't allow the camera to be turned on again)
 `Toaster (Switch)` Switch on to notify when camera is on.
 
 ## Realization
-Under construction
+A service called `FrameServer`(Windows) controls whether the camera is turned on or off.  
+**Emergency-Brakes** use `win32serviceutil` to check whether the camera is on and turn off the camera by stopping `FrameServer` service.
