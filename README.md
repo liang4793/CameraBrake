@@ -39,5 +39,5 @@ turn off the camera. (Doesn't allow the camera to be turned on again)
 `Toaster (Switch)` Switch on to notify when camera is on.
 
 ## Realization
-A service called `FrameServer`(Windows) controls whether the camera is turned on or off.  
+A (Windows) service called `FrameServer` controls whether the camera is turned on or off.  
 **Emergency-Brakes** use `win32serviceutil` to check whether the camera is on and turn off the camera by stopping `FrameServer` service.

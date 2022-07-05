@@ -38,5 +38,5 @@
 `Toaster (Switch)` 打开以开启摄像头通知
 
 ## 实现方式
-一个叫做 `FrameServer`(Windows) 的服务控制摄像头的开启或关闭  
+一个叫做 `FrameServer` 的(Windows)服务控制摄像头的开启或关闭  
 **Emergency-Brakes** 使用 `win32serviceutil` 来检查摄像头是否被开启并通过停止 `FrameServer` 服务来关闭摄像头
