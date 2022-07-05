@@ -69,14 +69,14 @@ def main():
 
     '''about log'''
     def write_log(device):
-        log = open('log.txt', 'a')
+        log = open('.\log.txt', 'a')
         time = datetime.datetime.now()
         log.writelines("[" + str(time) + "] " + str(device) +
                        " detected being used." + "\n")
         log.close()
 
     def read_log(l):
-        log = open("log.txt", "r+")
+        log = open(".\log.txt", "r+")
         line = log.read().splitlines()
         list1 = line[int(l)-1:int(l)]
         result = ''.join(list1)
@@ -92,10 +92,10 @@ def main():
         '''rewrite log'''
         def rewrite_log_loger(value):
             def changeline(line, content):
-                log = open('log.txt', 'r+')
+                log = open('.\log.txt', 'r+')
                 flist = log.readlines()
                 flist[int(line)] = str(content) + "\n"
-                log = open('log.txt', 'w+')
+                log = open('.\log.txt', 'w+')
                 log.writelines(flist)
                 log.close()
             if value == "1":
@@ -107,10 +107,10 @@ def main():
 
         def rewrite_log_toaster(value):
             def changeline(line, content):
-                log = open('log.txt', 'r+')
+                log = open('.\log.txt', 'r+')
                 flist = log.readlines()
                 flist[int(line)] = str(content) + "\n"
-                log = open('log.txt', 'w+')
+                log = open('.\log.txt', 'w+')
                 log.writelines(flist)
                 log.close()
             if value == "1":
@@ -122,10 +122,10 @@ def main():
 
         def rewrite_log_brake(value):
             def changeline(line, content):
-                log = open('log.txt', 'r+')
+                log = open('.\log.txt', 'r+')
                 flist = log.readlines()
                 flist[int(line)] = str(content) + "\n"
-                log = open('log.txt', 'w+')
+                log = open('.\log.txt', 'w+')
                 log.writelines(flist)
                 log.close()
             if value == "1":
