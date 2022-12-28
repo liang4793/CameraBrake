@@ -1,20 +1,16 @@
 # Emergency-Brakes
-<p>
-    <img src="https://img.shields.io/badge/Author-Liang4793-blue" alt="Author" />
-    <img src="https://img.shields.io/github/license/liang4793/Emergency-Brakes" alt="license" />
-    <img src="https://img.shields.io/badge/Language-Python-yellow" alt="Language" />
-    <img src="https://img.shields.io/badge/Platform-windows-lightgrey" alt="Platform" />
-</p>
-
-### English | [简体中文](/README(CH).md)
-
-**Camera privacy protection!**  
+**Camera privacy protection**  
 Quickly report and block camera service from opening.  
 If you like it, please give me a star --->  
 
 ## Notes
+**⚠️Only for Windows, tested on laptops running win10/11**  
 If there are any questions, please leave issue or contact me.  
 🔗Browse articles on: [Liang4793's Repository](https://liang4793.github.io/docs/project_docs/E-B_doc.html)
+
+## Realization
+A (Windows) service called `FrameServer` controls whether the camera is turned on or off.  
+**Emergency-Brakes** use `win32serviceutil` to check whether the camera is on and turn off the camera by stopping `FrameServer` service.
 
 ## Introduction
 1. **Emergency-Brakes** can detect whether the camera service is occupied and report.  
@@ -37,7 +33,3 @@ turn off the camera. (Doesn't allow the camera to be turned on again)
 **setting:**  
 `Logger (Switch)` Switch on to log.  
 `Toaster (Switch)` Switch on to notify when camera is on.
-
-## Realization
-A (Windows) service called `FrameServer` controls whether the camera is turned on or off.  
-**Emergency-Brakes** use `win32serviceutil` to check whether the camera is on and turn off the camera by stopping `FrameServer` service.
