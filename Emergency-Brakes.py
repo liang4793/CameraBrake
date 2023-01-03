@@ -226,7 +226,7 @@ def main():
                 if status_service("FrameServer") == True:
                     if toaster_is_on == "True":
                         toaster.show_toast("E-B:Camera detected being used!",
-                                           "If you aren't using it, open    Emergency-Brakes and click 'Brake'.",
+                                           "If you aren't using it, open Emergency-Brakes and click 'Brake'.",
                                            icon_path="image/warning.ico",
                                            threaded=False)
                     if logger_is_on == "True":
