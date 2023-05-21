@@ -1,4 +1,4 @@
-# Emergency-Brakes
+# CameraBrake
 **Camera privacy protection**  
 Quickly report and block camera service from opening.  
 If you like it, please give me a star --->  
@@ -10,12 +10,12 @@ If there are any questions, please leave issue or contact me.
 
 ## Realization
 A (Windows) service called `FrameServer` controls whether the camera is turned on or off.  
-**Emergency-Brakes** use `win32serviceutil` to check whether the camera is on and turn off the camera by stopping `FrameServer` service.
+**CameraBrake** use `win32serviceutil` to check whether the camera is on and turn off the camera by stopping `FrameServer` service.
 
 ## Introduction
-1. **Emergency-Brakes** can detect whether the camera service is occupied and report.  
-2. **Emergency-Brakes** can quickly turn off the camera.
-3. **Emergency-Brakes** can prevent the camera from turning on in order to protect privacy and security.
+1. **CameraBrake** can detect whether the camera service is occupied and report.  
+2. **CameraBrake** can quickly turn off the camera.
+3. **CameraBrake** can prevent the camera from turning on in order to protect privacy and security.
 
 ## How to use
 

@@ -138,13 +138,13 @@ def main():
         '''window'''
         window = tk.Tk()
         notebook = tk.ttk.Notebook(window)
-        window.title("Emergency-Brakes")
+        window.title("CameraBrake")
         window.iconbitmap('image/brake.ico')
         window.geometry('300x160')
         window.resizable(False, False)
 
         def close():
-            if messagebox.askokcancel("Quit", "Quit Emergency-Brakes?"):
+            if messagebox.askokcancel("Quit", "Quit CameraBrake?"):
                 window.destroy()
                 os._exit(0)
         window.protocol('WM_DELETE_WINDOW', close)
@@ -181,7 +181,7 @@ def main():
             toaster_switch.set(1)
         else:
             toaster_switch.set(0)
-        
+
         # main_page
         def brake_camera():
             brake_service("FrameServer")
@@ -193,9 +193,9 @@ def main():
         cam_brake_switch_lable = tk.Label(
             main_frame, text="Always brake camera (left:Off; Right:On)")
         cam_brake_switch_lable.pack(anchor='nw')
-        cam_brake_switch = tk.Scale(main_frame, from_=0, to=1, 
-                                    orient='horizontal', length=50, width=20,   
-                                    showvalue=0, 
+        cam_brake_switch = tk.Scale(main_frame, from_=0, to=1,
+                                    orient='horizontal', length=50, width=20,
+                                    showvalue=0,
                                     command=rewrite_log_brake)
         cam_brake_switch.pack(anchor='nw')
         # initial switch status
@@ -226,7 +226,7 @@ def main():
                 if status_service("FrameServer") == True:
                     if toaster_is_on == "True":
                         toaster.show_toast("E-B:Camera detected being used!",
-                                           "If you aren't using it, open Emergency-Brakes and click 'Brake'.",
+                                           "If you aren't using it, open CameraBrake and click 'Brake'.",
                                            icon_path="image/warning.ico",
                                            threaded=False)
                     if logger_is_on == "True":
@@ -239,7 +239,6 @@ def main():
             elif always_brake == "True":
                 if status_service("FrameServer") == True:
                     brake_service("FrameServer")
-
 
     '''thread'''
     thread1 = threading.Thread(target=window_thread)
