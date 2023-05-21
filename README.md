@@ -20,8 +20,8 @@ A (Windows) service called `FrameServer` controls whether the camera is turned o
 ## How to use
 
 <figure class="half">
-    <img src="https://s2.loli.net/2022/06/13/GHqgpKXF6lVUQT3.jpg" style="width: 260px; height: auto"/>
-    <img src="https://s2.loli.net/2022/06/13/NKHTy4Ql7xjcviG.jpg" style="width: 260px; height: auto"/>
+    <img src="https://s2.loli.net/2023/05/21/XDvcHAE1tnaZbUg.png" style="width: 260px; height: auto"/>
+    <img src="https://s2.loli.net/2023/05/21/P2mSfjocRQAHnMd.png" style="width: 260px; height: auto"/>
 </figure>
 
 **main:**  
