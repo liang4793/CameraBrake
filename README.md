@@ -1,4 +1,4 @@
-# CameraBrake
+# <img src="https://s2.loli.net/2023/05/26/IlQH3gnayib7Yvz.png" style="height: 24px;"> CameraBrake
 **Camera privacy protection**  
 Quickly report and block camera service from opening.  
 If you like it, please give me a star --->  
@@ -33,3 +33,7 @@ turn off the camera. (Doesn't allow the camera to be turned on again)
 **setting:**  
 `Logger (Switch)` Switch on to log.  
 `Toaster (Switch)` Switch on to notify when camera is on.
+
+
+
+<a href="https://liang4793.github.io/" target="_Blank"><img src="https://s2.loli.net/2023/05/27/YZeUTDAEwjbmd2x.png" style="width: 200px; height: auto"></a>
