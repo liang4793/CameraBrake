@@ -19,8 +19,8 @@ A (Windows) service called `FrameServer` controls whether the camera is turned o
 
 ## How to use
 
-<img src="https://s2.loli.net/2023/05/21/XDvcHAE1tnaZbUg.png" style="width: 240px; height: auto"/>
-<img src="https://s2.loli.net/2023/05/21/P2mSfjocRQAHnMd.png" style="width: 240px; height: auto"/>
+<img src="https://s2.loli.net/2023/05/21/XDvcHAE1tnaZbUg.png" style="width: 260px; height: auto"/>
+<img src="https://s2.loli.net/2023/05/21/P2mSfjocRQAHnMd.png" style="width: 260px; height: auto"/>
 
 **main:**  
 `Camera: On/Off` Show current status of camera.  
