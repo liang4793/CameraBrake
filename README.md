@@ -6,7 +6,7 @@ If you like it, please give me a star --->
 ## Notes
 **⚠️Only for Windows, tested on laptops running win10/11**  
 If there are any questions, please leave issue or contact me.  
-🔗Browse articles on: [Liang4793's Repository](https://liang4793.github.io/docs/project_docs/E-B_doc.html)
+🔗Browse articles on: [Liang4793's Repository](https://liang4793.github.io/docs/P002-doc.html)
 
 ## Realization
 A (Windows) service called `FrameServer` controls whether the camera is turned on or off.  
@@ -33,5 +33,5 @@ turn off the camera. (Doesn't allow the camera to be turned on again)
 `Toaster (Switch)` Switch on to notify when camera is on.
 
 
-
-<a href="https://liang4793.github.io/" target="_Blank"><img src="https://s2.loli.net/2023/05/27/YZeUTDAEwjbmd2x.png" style="width: 160px; height: auto"></a>
+<a href="https://liang4793.github.io/" target="_blank"><img src="https://s2.loli.net/2024/07/12/4FNfqDjn231UgIG.png" style="width: 160px; height: auto"></a>
+<a href="https://liang4793.github.io/" target="_blank"><img src="https://s2.loli.net/2024/07/12/EGrRQfFSNcvqxdh.png" style="width: 160px; height: auto"></a>
