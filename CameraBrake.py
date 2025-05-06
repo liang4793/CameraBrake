@@ -12,6 +12,7 @@ import pystray
 from pystray import MenuItem as item, Menu
 from PIL import Image
 import winreg
+import webbrowser
 
 # 常量定义
 SERVICE_NAME = "FrameServer"
@@ -224,6 +225,13 @@ class CameraBrakeGUI:
             command=lambda s: self._update_setting("always_brake", s)
         )
         self.always_brake_switch.pack(anchor='nw')
+
+        self.github_button = ttk.Button(
+            self.main_frame,
+            text="View Code / Leave Issues / Star",
+            command=lambda: webbrowser.open("https://github.com/liang4793/CameraBrake")
+        )
+        self.github_button.place(x=0, rely=1.0, y=0, anchor='sw')
 
     def _create_settings_tab(self):
         ttk.Label(self.settings_frame, text="Enable Logger").pack(anchor='nw')
