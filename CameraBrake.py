@@ -168,7 +168,7 @@ class TrayIcon:
         except Exception:
             self.icon.icon = Image.new('RGB', (64, 64), color=(255, 255, 255))
         self.icon.menu = Menu(
-            item("Open", self.on_open),
+            item("Open", self.on_open, default=True),
             item("Exit", self.on_exit)
         )
 
@@ -318,11 +318,12 @@ class CameraBrakeGUI:
 
 class BackgroundMonitor:
     """后台监控模块，监控服务状态并处理激活/关闭事件"""
-    def __init__(self):
+    def __init__(self, gui):
         self.running = threading.Event()
         self.running.set()
         self.toaster = ToastNotifier()
         self.last_state = None
+        self.gui = gui
 
     def start(self):
         thread = threading.Thread(target=self._monitor)
@@ -355,9 +356,6 @@ class BackgroundMonitor:
             SettingsManager.write_log("Camera activated")
         if config["toaster_enabled"]:
             self._show_notification()
-        # 循环等待直到服务关闭或配置变更
-        while ServiceManager.get_status(SERVICE_NAME) and not config["always_brake"]:
-            time.sleep(0.5)
 
     def _handle_deactivation(self, config):
         if config["logger_enabled"]:
@@ -370,16 +368,22 @@ class BackgroundMonitor:
                 "Camera is in use. Open CameraBrake to control.",
                 icon_path=WARNING_ICON,
                 duration=5,
-                threaded=True
+                threaded=True,
+                callback_on_click=self._on_notification_click
             )
         except Exception as e:
             messagebox.showerror("Notification Error", f"Notification failed: {str(e)}")
 
+    def _on_notification_click(self):
+        self.gui.root.after(0, self.gui.root.deiconify)
+        if self.gui.tray_icon:
+            self.gui.tray_icon.icon.stop()
+            self.gui.tray_icon = None
 
 def main():
     require_admin()
     gui = CameraBrakeGUI()
-    monitor = BackgroundMonitor()
+    monitor = BackgroundMonitor(gui)
     monitor.start()
     gui.run()
     monitor.stop()
