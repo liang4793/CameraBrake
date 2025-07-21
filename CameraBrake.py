@@ -22,6 +22,14 @@ ICON_PATH = "image/brake.ico"
 WARNING_ICON = "image/warning.ico"
 
 
+def fix_working_directory():
+    """保证自启动图片资源不会出错"""
+    if getattr(sys, 'frozen', False):
+        os.chdir(os.path.dirname(sys.executable))
+    else:
+        os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+
 def require_admin():
     """检查是否有管理员权限，如果没有则尝试以管理员身份重启当前脚本"""
     try:
@@ -70,6 +78,8 @@ class ServiceManager:
     @staticmethod
     def stop_service(service_name):
         try:
+            if not ServiceManager.get_status(service_name):
+                return False
             win32serviceutil.StopService(service_name)
             return True
         except Exception as e:
@@ -381,6 +391,7 @@ class BackgroundMonitor:
             self.gui.tray_icon = None
 
 def main():
+    fix_working_directory()
     require_admin()
     gui = CameraBrakeGUI()
     monitor = BackgroundMonitor(gui)
